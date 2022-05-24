@@ -3,9 +3,9 @@ data = {}
 command = []
 
 def input_error(func):
-    def wrapper():
+    def wrapper(*args, **kwargs):
         try:
-            return func()
+            return func(*args, **kwargs)
         except IndexError:
             return "give me 'add' 'name' 'number'"
         except KeyError:
@@ -67,6 +67,9 @@ COMMANDS = {
 def main():
     while True:
         user_input = input(">>> ")
+        for k, v in COMMANDS.items():
+        if v == user_input:
+            print(k())
         if user_input == '.':
             break
         user_input = user_input.lower()
